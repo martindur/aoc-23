@@ -88,7 +88,31 @@ defmodule Day5 do
       |> IO.inspect
   end
 
+  defp format_seeds(seed_string) do
+    [key | numbers] = String.split(seed_string, ":")
+    numbers = String.split(numbers, " ") |> map(String.to_integer)
+
+    ranges = Enum.chunk_every(2) |> map(fn [num, range] -> num..(num + range) end)
+
+    %{key: ranges}
+  end
+
+  def solve do
+    {:ok, input} = File.read("day05_input_sample.txt")
+
+    input 
+      |> String.split("\n\n")
+      |> Enum.with_index
+      |> Enum.map(fn {val, index} ->
+        case index do
+          0 -> String.split(":")
+        end 
+      end)
+      |> IO.inspect
+  end
+
 end
 
 #Day5.puzzle1
-Day5.puzzle2
+#Day5.puzzle2
+Day5.solve
